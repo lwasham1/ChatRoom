@@ -6,67 +6,48 @@ function App() {
 const [username, setUsername] = useState("");
 const [validUsername, setValidUsername] = useState(true);
 
-const MAX_LETTERS = 14;
 
-
-
-function isValidUsername(username){
-    if(Username.trim().length > maxLetters){
-      alert(`Username must be ≤ ${MAX_LETTERS} characters.`)
-      setValidUsername(false);
-    }
-    else if(username.trim() == ""){
-      alert(`Must type username.`)
-      setValidUsername(false);
-    }
+function onSubmit(){
+  if(username != ""){
+    setUsername(username.trim())
+  }
+  else{
+    setUsername("DanielEnis")
+  }
 }
-const handleUsernameChange = (e) => {
-    const newUsername = e.target.value;
-    setUsername(newUsername);
-    
 
-  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    isValidUsername(username);
-  };
 
-  const handleLinkClick = (e) => {
-    if (!validUsername) {
-      e.preventDefault();
-      isValidUsername(username);
-    } else {
-      
-      localStorage.setItem('username', username);
-      console.log('Username stored:', username);
-    }
-  };
 
   return (
     <>
-      <div>
-        <h1 className = "opening-header">Chat Time</h1>
-        <form onSumbit={handleSumbit}>
-          <label>UserName...</label>
+      <div className = "opening-header">
+        <h1 className = "opening-h1">Chat Time</h1>
+        <form form onSubmit={onSubmit}>
           <input 
-            type="text"
-            id="username"
-            value={username}
-            onChange={handleUsernameChange}
-            maxLength={MAX_LETTERS}
-            placeholder="Enter your username"
-            className="username-input"
+           type="text"
+           id="username"
+           name="username"
+           maxlength="14"
           />
         </form>
-        <na>
-            <Link>
-              <button className = "joinlobby-button" onClick={handleSumbit}></button>
-            </Link>  
-        </na>
+        
+      </div>
+      <div>
+        <form>
+          <input
+            type="text"
+            id="lobby-id"
+            name="lobby-id"
+            maxlength="8"
+          />
+        </form>
+        <button type="onSubmit">Create Lobby</button>
+
       </div>
     </>
   )
 }
 
 export default App
+
